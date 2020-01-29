@@ -1,0 +1,23 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+int main(){
+    
+    string str;
+    char c;
+    int num=0;
+    getline(cin,str);
+    cin>>c;
+    for(int i=0;i<str.length();i++){
+        
+        if(str[i]==c  | str[i]==(c+'A'-'a'))
+            num++;
+        
+    }
+    
+    cout<<num;
+    return 0;
+}
+
+#getline获取一行字符，且需要考虑大小写
