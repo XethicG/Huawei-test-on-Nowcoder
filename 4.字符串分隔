@@ -1,0 +1,23 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+int main(){
+    string str;
+    while(cin>>str){
+        int N=str.length();
+        if(N%8!=0)
+            str.append((8-N%8),'0');
+        N=str.length();
+        for(int i=0;i<N;i++){
+            
+            if(i!=0 & i%8==0)
+                cout<<endl<<str[i];
+            else
+                cout<<str[i];
+            
+        }
+        cout<<endl;
+    }
+    return 0;
+}
