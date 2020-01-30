@@ -1,0 +1,14 @@
+#include <iostream>
+using namespace std;
+
+int main(){
+    
+    int i;
+    while(cin>>hex>>i){
+        
+        cout<<i<<endl;
+        
+    }
+}
+
+#c++ 中十进制、十六进制、八进制的控制符分别为dec hex oct
