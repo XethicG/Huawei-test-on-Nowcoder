@@ -1,0 +1,26 @@
+#include <iostream>
+#include <set>
+using namespace std;
+
+int main(){
+    int num=0;
+    int N=0;
+    set<int> myset;
+    set<int>::iterator it;
+    while(cin>>N){
+        
+        while(N--){
+            cin>>num;
+            myset.insert(num);
+        }
+        for(it=myset.begin();it!=myset.end();it++){
+        cout<<*it<<endl;
+    }
+        myset.clear();
+    }
+    
+    return 0;
+}
+
+#c++需要排序且不能重复么先考虑set容器 注意因为是多组输入 容器在每次使用后要请客！！因为这事儿我卡了很久
+#当然也可以采用空间换时间的做法 因为比较短就懒得写了
