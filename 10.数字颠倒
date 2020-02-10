@@ -1,0 +1,38 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+int main() {
+	
+	string s;
+	string output;
+	while(cin>>s){
+		int len=s.length();
+		while(len--){
+			output+=s[len];
+		}
+		cout<<output<<endl;;
+		output.clear();
+	}
+
+	return 0;
+}
+
+//循环做法
+
+#include <iostream>
+#include <string>
+#include <algorithm>
+using namespace std;
+
+int main() {
+	
+	string s;
+	while(cin>>s){
+		reverse(s.begin(),s.end());
+		cout<<s<<endl;
+	}
+
+	return 0;
+}
+//algorithm库函数做法
