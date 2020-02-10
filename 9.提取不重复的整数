@@ -1,0 +1,22 @@
+#include <iostream>
+using namespace std;
+
+int main(){
+    
+    int input,output,l=0;
+    int ls[10]={0};
+    cin>>input;
+    while(input){
+        l=input%10;
+        if(ls[l]==0){
+            ls[l]=1;
+            output=output*10+l;
+        }
+        
+        input/=10;
+    }
+    cout<<output;
+    return 0;
+}
+
+//同样可以用空间换时间的思想 避免在表中查询
