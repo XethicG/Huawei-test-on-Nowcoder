@@ -1,0 +1,24 @@
+#include <iostream>
+#include <vector>
+using namespace std;
+
+int main() {
+	char ch;
+	vector<bool> vec(128,0);
+	int count;
+	while(cin.get(ch)) {
+		if(ch=='\n' or ch=='\0') {
+			for(int i=0; i<128; i++)
+				count+=vec[i];
+			cout<<count<<endl;
+			vec=vector<bool> (128,0);
+			count=0;
+		}
+
+		if(ch>=0 and ch<128)
+			vec[ch]=1;
+	}
+
+
+	return 0;
+}
