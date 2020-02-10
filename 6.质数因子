@@ -1,0 +1,30 @@
+#include <iostream>
+#include <vector>
+using namespace std;
+
+int main(){
+	unsigned long input;
+	vector<unsigned long> vec;
+	vector<unsigned long>::iterator it;
+	
+	cin>>input;
+	for(int i=2;i<input+1;i++){
+		
+		if(input%i==0){
+			
+			vec.push_back(i);
+			input/=i;
+			i=1;
+			
+		}
+		
+		
+	}
+	
+	for(it=vec.begin();it!=vec.end();it++)
+		cout<<*it<<" ";
+	
+	return 0;
+} 
+
+//求质数一般可以用筛法 计算到sqrt(N) 本题是求质数因子
