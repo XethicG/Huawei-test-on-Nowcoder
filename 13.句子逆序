@@ -1,0 +1,27 @@
+#include <iostream>
+#include <string>
+#include <stack>
+using namespace std;
+
+int main() {
+	
+	string s;
+	stack<string> ss;
+	while(cin>>s){	//自动通过空格分隔字符串
+		ss.push(s); 
+		if(cin.get()=='\n')
+			break;
+	}
+	
+	while(!ss.empty()){
+		cout<<ss.top();
+		ss.pop();
+		if(!ss.empty())
+			cout<<" ";
+		
+	}
+
+	return 0;
+}
+
+//很有意思的题目 空格分隔可以直接用cin 后进先出想到stack
