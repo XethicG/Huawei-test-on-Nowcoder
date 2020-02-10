@@ -1,0 +1,29 @@
+#include <iostream>
+#include <vector>
+using namespace std;
+
+int main() {
+
+	int N,i,v;
+	vector<int> ls(65537,0);
+	cin>>N;
+
+	while(N--) {
+
+		cin>>i>>v;
+		ls[i]+=v;
+
+
+	}
+
+	for(int j=0; j<65537; j++) {
+
+		if(ls[j])
+			cout<<j<<" "<<ls[j]<<endl;
+
+	}
+
+	return 0;
+}
+
+//空间换时间的思想 很常见
