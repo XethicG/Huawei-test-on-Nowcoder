@@ -1,0 +1,14 @@
+#include <iostream>
+using namespace std;
+
+int main(){
+    float input;
+    cin>>input;    
+    int output=input;
+    if((int(input*10)%10)>4)
+        output++;
+    cout<<output;
+    return 0;
+}
+
+//本身赋给int 小数点后一位大于4 则加一
