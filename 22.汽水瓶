@@ -1,0 +1,27 @@
+#include <iostream>
+using namespace std;
+
+int main(){
+    
+    int empty,full,drink;
+    while(cin>>empty){
+        if(empty==0)
+            break;
+        full=0;
+        drink=0;
+        while(empty>2){
+            full=empty/3;
+            empty=empty%3;
+            drink+=full;
+            empty+=full;
+            full=0;
+        }
+        if(empty<2)
+            cout<<drink<<endl;
+        if(empty==2)
+            cout<<drink+1<<endl;
+        
+    }
+    
+    return 0;
+}
