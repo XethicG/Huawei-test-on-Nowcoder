@@ -1,0 +1,57 @@
+#include <iostream>
+#include <vector>
+using namespace std;
+
+int main() {
+
+	int n;
+	while(cin>>n) {
+		vector<int> vec;
+		int num;
+		while(n--) {
+			cin>>num;
+			vec.push_back(num);
+		}
+
+		vector<int> dp_up(vec.size(),1);
+//        dp_up[0]=1;
+		for(int i=1; i<dp_up.size(); i++) {
+			for(int j=0; j<i; j++) {
+				if(vec[i]>vec[j]&&dp_up[i]<dp_up[j]+1)
+					dp_up[i]=dp_up[j]+1;
+
+
+			}
+		}
+
+//        for(int i=1;i<dp_up.size();i++){
+//            if(dp_up[i]<dp_up[i-1])
+//                dp_up[i]=dp_up[i-1];
+//        }
+
+		vector<int> dp_down(vec.size(),1);
+//        dp_down[vec.size()-1]=1;
+		for(int i=vec.size()-2; i>=0; i--) {
+			for(int j=vec.size()-1; j>i; j--) {
+				if(vec[i]>vec[j]&&dp_down[i]<dp_down[j]+1)
+					dp_down[i]=dp_down[j]+1;
+
+
+			}
+		}
+//        for(int i=vec.size()-2;i>=0;i--){
+//            if(dp_down[i]<dp_down[i+1])
+//                dp_down[i]=dp_down[i+1];
+//        }
+		int maxSize=0;
+		for(int i=0; i<vec.size(); i++) {
+			dp_up[i]+=(dp_down[i]-1);
+			if(maxSize<dp_up[i])
+				maxSize=dp_up[i];
+		}
+
+		cout<<vec.size()-maxSize<<endl;
+	}
+
+	return 0;
+}
