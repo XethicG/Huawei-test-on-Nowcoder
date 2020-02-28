@@ -1,0 +1,73 @@
+#include <iostream>
+#include <vector>
+#include <string>
+using namespace std;
+
+int main(){
+    string s;
+
+	while(getline(cin,s)){
+		int x(0),y(0),last_pos(-1),new_pos(0),temp(0),temp1(0);
+		new_pos=s.find_first_of(';',0);
+		while(new_pos!=string::npos){
+//			cout<<new_pos<<endl;
+			if((new_pos-last_pos)==3){
+				temp=s[new_pos-1]-'0';
+				if(temp>=0&&temp<=9){
+					switch(s[new_pos-2]){
+						case 'W':
+							y+=temp;
+							break;
+						case 'A':
+							x-=temp;
+							break;
+						case 'S':
+							y-=temp;
+							break;
+						case 'D':
+							x+=temp;
+							break;
+						default:
+							break;
+					}
+					
+				}
+				
+			}
+			else if ((new_pos-last_pos)==4){
+				temp=s[new_pos-2]-'0';
+				temp1=s[new_pos-1]-'0';
+				if(temp>=0&&temp<=9&&temp1>=0&&temp1<=9){
+					switch(s[new_pos-3]){
+						case 'W':
+							y+=temp*10+temp1;
+							break;
+						case 'A':
+							x-=temp*10+temp1;
+							break;
+						case 'S':
+							y-=temp*10+temp1;
+							break;
+						case 'D':
+							x+=temp*10+temp1;
+							break;
+						default:
+							break;
+							
+					}
+					
+				}
+			
+			}
+			
+			
+			last_pos=new_pos;
+			new_pos=s.find_first_of(';',++new_pos);
+		}
+		
+		cout<<x<<","<<y<<endl;
+		s.clear();
+		
+	}
+    return 0;
+}
