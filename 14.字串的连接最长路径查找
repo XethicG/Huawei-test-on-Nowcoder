@@ -1,0 +1,26 @@
+#include <iostream>
+#include <string>
+#include <vector>
+#include <algorithm>
+using namespace std;
+int main(){
+    
+    int n;
+    string str;
+    vector<string> vec;
+    vector<string>::iterator it;
+    while(cin>>n){
+        
+        while(n--){
+            cin>>str;
+            vec.push_back(str);
+        }
+        
+        sort(vec.begin(),vec.end());
+        for(it=vec.begin();it!=vec.end();it++)
+            cout<<*it<<endl;
+    }
+    
+    
+    return 0;
+}
