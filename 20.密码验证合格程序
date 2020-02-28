@@ -1,0 +1,65 @@
+#include <iostream>
+#include <vector>
+
+using namespace std;
+bool isValid(string s) {
+	int l=s.size();
+	if(l<9)
+		return false;
+	bool H=0,L=0,n=0,o=0;
+	int flag=0;
+	//for(int i=0; i<l&&!(flag>2); i++) {
+    for(int i=0; i<l; i++) {
+		if(s[i]>='0'&&s[i]<='9')
+			n=1;
+		else if(s[i]>='a'&&s[i]<='z')
+			L=1;
+		else if(s[i]>='A'&&s[i]<='Z')
+			H=1;
+		else
+			o=1;
+		flag=H+L+n+o;
+	}
+
+	if(flag>2) {
+		vector< vector<int> > vec(l,vector<int>(l));
+		int maxSize=1;
+		for(int i=1;i<l;i++){
+			if(s[i]==s[0])
+				vec[0][i]=1;
+		}
+		//for(int i=1; i<l&&!(maxSize>2); i++) {
+        for(int i=1; i<l; i++) {
+			for(int j=i+2; j<l; j++) {
+				if(s[i]==s[j]){
+					vec[i][j]=vec[i-1][j-1]+1;
+                    if(vec[i][j]>maxSize)
+                            maxSize=vec[i][j];
+                    if(maxSize>2)
+                        return false;
+				}
+
+			}
+		}
+		
+		
+		return true;
+
+
+	} else
+		return false;
+}
+int main() {
+	string s;
+	while(cin>>s) {
+		switch (isValid(s)) {
+			case true:
+				cout<<"OK"<<endl;
+				break;
+			case false:
+				cout<<"NG"<<endl;
+				break;
+		}
+	}
+	return 0;
+}
