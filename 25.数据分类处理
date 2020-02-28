@@ -1,0 +1,93 @@
+#include <iostream>
+#include <vector>
+#include <string>
+#include <sstream>
+#include <algorithm>
+using namespace std;
+
+bool isIn(unsigned int R,unsigned int I) {
+	if(R>I)
+		return false;
+
+	string Rstring = to_string(R);
+	string Istring = to_string(I);
+	int Rsize=Rstring.size();
+	int Isize=Istring.size();
+
+	for(int i=0; i<Isize-Rsize+1; i++) {
+		if(Rstring==Istring.substr(i,Rsize)){
+//			cout<<R<<"在"<<I<<"中"<<endl;
+			
+			return true;
+			
+		}
+			
+	}
+
+	return false;
+}
+
+int main() {
+
+	int Inum,Rnum;
+	while(cin>>Inum) {
+		unsigned int num;
+		vector<unsigned int> I;
+		vector<unsigned int> R;
+		while(Inum--) {
+			cin>>num;
+			I.push_back(num);
+		}
+		cin>>Rnum;
+		while(Rnum--) {
+			cin>>num;
+			R.push_back(num);
+		}
+
+
+		Inum=I.size();
+		Rnum=R.size();
+		sort(R.begin(),R.end());
+
+		vector<unsigned int> output;
+		vector<unsigned int> index;
+		for(int i=0; i<Rnum; i++) {
+			int tempR=R[i];
+			if(i>0&&tempR==R[i-1])
+				continue;
+				index.clear(); 
+			output.push_back(tempR);
+			for(int j=0; j<Inum; j++) {
+				int tempI=I[j];
+				if(isIn(tempR,tempI)) {
+					index.push_back(j);//记录标签
+				}
+			}
+			if(!index.empty()) {
+				
+				output.push_back(index.size());
+				for(int j=0; j<index.size(); j++) {
+//					cout<<"i="<<R[i]<<",对应I中第"<<I[index[j]]<<endl;
+					output.push_back(index[j]);
+					output.push_back(I[index[j]]);
+				}
+//				for(int j=0; j<index.size(); j++) {
+//					output.push_back(I[index[j]]);
+//				}
+
+			} else {
+				output.pop_back();
+			}
+
+		}
+
+		cout<<output.size();
+		for(int i=0; i<output.size(); i++)
+			cout<<" "<<output[i];
+		cout<<endl;
+
+	}
+
+
+	return 0;
+}
