@@ -1,0 +1,124 @@
+#include <iostream>
+#include <vector>
+#include <string>
+#include <sstream>
+using namespace std;
+
+
+
+vector<string> split(string s,const char a) {
+	vector<string> vec;
+	stringstream ss(s);
+	string flag;
+	while(getline(ss,flag,a)) {
+		vec.push_back(flag);
+	}
+	return vec;
+}
+
+bool smIsValid(vector<string> vec) {
+	int l=vec.size(),count=0;
+	if(l!=4) {
+		error++;
+		return false;
+	}
+	vector<int> num;
+	int i;
+	for(i=0; i<l; i++) {
+		num.push_back(stoi(vec[i]));
+		if(num[i]>255||num[i]<0){
+		error++;
+		return false;	
+		}
+	}
+    
+	if(num[0]==0){
+		error++;
+		return false; 
+	} 
+	for(i=0; i<l; i++) {
+		if(num[i]==255)
+		{
+			count++;
+			continue;
+		}
+			
+		else if (num[i]==0x00||num[i]==0x80||num[i]==0xc0||num[i]==0xe0||num[i]==0xf0||num[i]==0xf8||num[i]==0xfc||num[i]==0xfe)
+			break;
+		else {
+			error++;
+			return false;
+		}
+	}
+
+	for(++i; i<l; i++) {
+		if(num[i]!=0) {
+			error++;
+			return false;
+		}
+	}
+	if(count==4){
+		error++;
+		return false;
+	}
+		
+	return true;
+
+}
+bool ipIsValid(vector<string> vec) {
+	if(vec.size()!=4) {
+		error++;
+		return false;
+	}
+	
+	vector<int> num;
+	for(int i=0;i<vec.size();i++){
+		num.push_back(stoi(vec[i]));
+		if(num[i]>255||num[i]<0){
+		error++;
+		return false;	
+		}
+	}
+		
+	
+	if(num[0]==0)
+		return true;
+	else if(num[0]>0&&num[0]<127)
+		A++;
+	else if(num[0]>=128&&num[0]<=191)
+		B++;
+	else if(num[0]>=192&&num[0]<=223)
+		C++;
+	else if(num[0]>=224&&num[0]<=239)
+		D++;
+	else if(num[0]>=240&&num[0]<=255)
+		E++;
+	else {
+		error++;
+		return false;
+	}
+	if(num[0]==10||(num[0]==172&&num[1]>=16&&num[1]<=31)||(num[0]==192&&num[1]==168))
+		pri++;
+	return true;
+}
+
+int main() {
+	string s;
+	vector<string> vec,ipnum,smnum;
+    int A=0,B=0, C=0,D=0,E=0,error=0,pri=0;
+	while(getline(cin,s)) {
+		ipnum.clear();
+		smnum.clear();
+		vec=split(s,'~');
+		ipnum=split(vec[0],'.');
+		smnum=split(vec[1],'.');
+		if(smIsValid(smnum)) {
+			ipIsValid(ipnum);
+		}
+
+		
+	}
+	cout<<A<<" "<<B<<" "<<C<<" "<<D<<" "<<E<<" "<<error<<" "<<pri<<endl;
+
+	return 0;
+}
