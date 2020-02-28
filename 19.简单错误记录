@@ -1,0 +1,40 @@
+#include <iostream>
+#include <string>
+#include <vector>
+using namespace std;
+
+int main() {
+
+	string s;
+	int num;
+	vector<string> vec;
+	vector<int> val;
+
+	while(cin>>s>>num) {
+		int flag=s.find_last_of('\\');
+		s=s.substr(flag+1,s.size()-flag-1);
+		if(s.size()>16)
+			s=s.substr(s.size()-16,16);
+		s=s+" "+to_string(num);
+		int i=0;
+		for(; i<vec.size(); i++) {
+			if(vec[i]==s) {
+				val[i]++;
+				break;
+			}
+		}
+		if(i==vec.size()) {
+			vec.push_back(s);
+			val.push_back(1);
+		}
+	}
+
+	for(int i=vec.size()-8; i!=vec.size(); i++) {
+//		cout<<i<<"<"<<vec.size()<<" is "<<(i<vec.size())<<endl;
+		if(i>=0)
+			cout<<vec[i]+" "+to_string(val[i])<<endl;
+	}
+
+
+	return 0;
+}
